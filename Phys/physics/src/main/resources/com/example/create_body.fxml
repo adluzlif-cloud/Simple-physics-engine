@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.CreateBodyController">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <Label text="Create Object"/>
+
+    <ChoiceBox fx:id="typeChoice"/>
+
+    <TextField fx:id="massField" promptText="Mass"/>
+    <TextField fx:id="radiusField" promptText="Radius"/>
+    <TextField fx:id="vxField" promptText="Velocity X"/>
+    <TextField fx:id="vyField" promptText="Velocity Y"/>
+
+    <HBox spacing="10">
+        <Button text="Create" onAction="#onCreate"/>
+        <Button text="Cancel" onAction="#onCancel"/>
+    </HBox>
+
+</VBox>

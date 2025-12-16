@@ -25,30 +25,17 @@ public class SimulationController {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                double dt = 0.016;
                 g.setFill(Color.BLACK);
                 g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-                sim.update(0.016);
+                sim.update(dt);
                 sim.render(g);
             }
         };
         timer.start();
         
         canvas.setOnMouseClicked(event -> {
-            double x = event.getX();
-            double y = event.getY();
-
-            Body planet = new Body();
-            planet.x = x;
-            planet.y = y;
-            planet.mass = 500;
-            planet.rad = 10;
-            planet.type = Body.Type.Planet;
-
-            sim.addObject(planet);
-            System.out.println("Created a planet at (" + x + ";" + y + ")");
-            });
-            canvas.setOnMouseClicked(event -> {
             try {
                 openCreateBodyDialog(event.getX(), event.getY());
             } catch (Exception e) {

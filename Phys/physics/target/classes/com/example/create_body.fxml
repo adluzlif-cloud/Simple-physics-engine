@@ -16,10 +16,24 @@
 
     <ChoiceBox fx:id="typeChoice"/>
 
-    <TextField fx:id="massField" promptText="Mass"/>
-    <TextField fx:id="radiusField" promptText="Radius"/>
-    <TextField fx:id="vxField" promptText="Velocity X"/>
-    <TextField fx:id="vyField" promptText="Velocity Y"/>
+    <VBox fx:id="massiveBox" spacing="5">
+        <TextField fx:id="massField" promptText="Mass"/>
+        <TextField fx:id="radiusField" promptText="Radius"/>
+        <TextField fx:id="vxField" promptText="Velocity X"/>
+        <TextField fx:id="vyField" promptText="Velocity Y"/>
+        <CheckBox fx:id="fixed" text="Static"/>
+    </VBox>
+
+    <VBox fx:id="photonBox" spacing="5">
+    <Label text="Photon direction "/>
+    <Slider fx:id="angleSlider"
+            min="0" max="360"
+            value="0"
+            showTickLabels="true"
+            majorTickUnit="90"
+            minorTickCount="2"/>
+    <Label fx:id="angleLabel" text="0°"/>
+    </VBox>
 
     <HBox spacing="10">
         <Button text="Create" onAction="#onCreate"/>

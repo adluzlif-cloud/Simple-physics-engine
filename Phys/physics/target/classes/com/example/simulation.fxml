@@ -4,5 +4,5 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.SimulationController">
-    <Canvas fx:id="canvas" width="800" height="600"/>
+    <Canvas fx:id="canvas" width="1600" height="900"/>
 </AnchorPane>

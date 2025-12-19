@@ -26,10 +26,18 @@ public class CreateBodyController {
     @FXML
     private TextField massField, radiusField, vxField, vyField;
 
+    @FXML
     private Body result;
 
     @FXML
     private CheckBox fixed;
+
+    @FXML 
+    private VBox velocityBox;
+
+    @FXML
+    private VBox radiusBox;
+
 
     @FXML
     public void initialize() {
@@ -44,12 +52,17 @@ public class CreateBodyController {
             updateVisibility(b)
     );
 
+    fixed.selectedProperty().addListener((o, oldVal, newVal) ->
+        updateVisibility(typeChoice.getValue())
+    );
+
     updateVisibility(typeChoice.getValue());
 }
 
     private void updateVisibility(Body.Type type) {
     boolean isPhoton = type == Body.Type.Photon;
     boolean isBlackHole = type == Body.Type.Black_Hole;
+    boolean isStatic = isBlackHole && fixed.isSelected();
 
     massiveBox.setManaged(!isPhoton);
     massiveBox.setVisible(!isPhoton);
@@ -59,7 +72,13 @@ public class CreateBodyController {
 
     fixed.setManaged(isBlackHole);
     fixed.setVisible(isBlackHole);
-    }
+
+    radiusBox.setManaged(!isBlackHole);
+    radiusBox.setVisible(!isBlackHole);
+
+    velocityBox.setManaged(!isStatic);
+    velocityBox.setVisible(!isStatic);
+}
 
     @FXML
     private void onCreate() {
@@ -70,7 +89,6 @@ public class CreateBodyController {
         if (type == Body.Type.Photon) {
             body.mass = 0;
             body.rad = 2;
-
             double speed = 300;
 
             double angleDeg = angleSlider.getValue();
@@ -79,14 +97,27 @@ public class CreateBodyController {
             body.vx = speed * Math.cos(angleRad);
             body.vy = speed * Math.sin(angleRad);
         }
-        else {
+        else if (type == Body.Type.Planet){
         body.mass = Double.parseDouble(massField.getText());
         body.rad  = Double.parseDouble(radiusField.getText());
-        body.vx   = Double.parseDouble(vxField.getText());
-        body.vy   = Double.parseDouble(vyField.getText());
+        body.vx = Double.parseDouble(vxField.getText());
+        body.vy = Double.parseDouble(vyField.getText());
         body.fixed = (type == Body.Type.Black_Hole) && fixed.isSelected();
-    }
+        }
+        else {
+        body.mass = Double.parseDouble(massField.getText());
+        body.rad  = 2 * body.mass / (300 * 300);
+        body.fixed = (type == Body.Type.Black_Hole) && fixed.isSelected();
 
+        if (body.fixed) {
+            body.vx = 0;
+            body.vy = 0;
+        } 
+        else {
+            body.vx = Double.parseDouble(vxField.getText());
+            body.vy = Double.parseDouble(vyField.getText());
+        }
+    }
         result = body;
         close();
     }

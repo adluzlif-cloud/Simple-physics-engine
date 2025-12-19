@@ -1,43 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="10"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.CreateBodyController">
-
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.CreateBodyController">
+    
     <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
+    <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
 
-    <Label text="Create Object"/>
+    <center>
+        <VBox spacing="8">
+            <Label text="Create Object"/>
 
-    <ChoiceBox fx:id="typeChoice"/>
+            <ChoiceBox fx:id="typeChoice"/>
 
-    <VBox fx:id="massiveBox" spacing="5">
-        <TextField fx:id="massField" promptText="Mass"/>
-        <TextField fx:id="radiusField" promptText="Radius"/>
-        <TextField fx:id="vxField" promptText="Velocity X"/>
-        <TextField fx:id="vyField" promptText="Velocity Y"/>
-        <CheckBox fx:id="fixed" text="Static"/>
-    </VBox>
+            <VBox fx:id="massiveBox" spacing="6">
+                <TextField fx:id="massField" promptText="Mass"/>
+                <VBox fx:id="radiusBox" spacing="4">
+                    <TextField fx:id="radiusField" promptText="Radius"/>
+                </VBox>
+                <VBox fx:id="velocityBox" spacing="4">
+                    <TextField fx:id="vxField" promptText="Velocity X"/>
+                    <TextField fx:id="vyField" promptText="Velocity Y"/>
+                </VBox>
+                <CheckBox fx:id="fixed" text="Static"/>
+            </VBox>
 
-    <VBox fx:id="photonBox" spacing="5">
-    <Label text="Photon direction "/>
-    <Slider fx:id="angleSlider"
-            min="0" max="360"
-            value="0"
-            showTickLabels="true"
-            majorTickUnit="90"
-            minorTickCount="2"/>
-    <Label fx:id="angleLabel" text="0°"/>
-    </VBox>
+            <VBox fx:id="photonBox" spacing="6">
+                <Label text="Photon direction"/>
+                <Slider fx:id="angleSlider" min="0" max="360"/>
+                <Label fx:id="angleLabel"/>
+            </VBox>
+        </VBox>
+    </center>
 
-    <HBox spacing="10">
-        <Button text="Create" onAction="#onCreate"/>
-        <Button text="Cancel" onAction="#onCancel"/>
-    </HBox>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Create" onAction="#onCreate"/>
+            <Button text="Cancel" onAction="#onCancel"/>
+        </HBox>
+    </bottom>
 
-</VBox>
+</BorderPane>

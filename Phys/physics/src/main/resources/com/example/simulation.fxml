@@ -2,7 +2,23 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.SimulationController">
-    <Canvas fx:id="canvas" width="1600" height="900"/>
-</AnchorPane>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.SimulationController">
+    <top>
+        <ToolBar>
+            <Button text="Settings" onAction="#openSettings"/>
+            <Button fx:id = "pauseButton" text="Pause" onAction="#togglePause"/>
+        </ToolBar>
+    </top>
+    <center>
+    <StackPane fx:id = "centerPane">
+        <Canvas fx:id="canvas" width="1800" height="900"/>
+        <Canvas fx:id="fieldCanvas" width = "1800" height ="900"/>
+    </StackPane>
+    </center>
+</BorderPane>
